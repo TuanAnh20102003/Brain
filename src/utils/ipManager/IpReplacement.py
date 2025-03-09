@@ -26,6 +26,8 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
+#file Quản lý địa chỉ IP, thay thế IP trong file cấu hình​
 import re
 import subprocess
 
@@ -36,7 +38,10 @@ class IPManager:
     def get_ip_address(self):
         """Retrieve the current IP address of the machine."""
         try:
-            ip_output = subprocess.check_output("hostname -I", shell=True)
+            ip_output = subprocess.check_output("hostname -I", shell=True) #hostname -I trả về địa chỉ IP của ras trên 
+            #decode('utf-8') → Chuyển dữ liệu từ dạng byte sang chuỗi (string).
+            #strip() → Loại bỏ khoảng trắng thừa ở đầu/cuối chuỗi.
+            #split()[0] → Chia chuỗi thành danh sách các từ, sau đó lấy phần tử đầu tiên (địa chỉ IP chính).
             ip_address = ip_output.decode('utf-8').strip().split()[0]
             return ip_address
         except subprocess.CalledProcessError:
@@ -51,6 +56,10 @@ class IPManager:
             return
 
         # Regular expression pattern to match IP addresses
+        #\b → Word boundary (giới hạn từ), đảm bảo rằng IP là một phần riêng biệt, không phải một phần của chuỗi dài hơn.
+        #\d{1,3} → Một nhóm số (\d nghĩa là chữ số từ 0-9), với số lượng từ 1 đến 3 chữ số.
+        #\. → Dấu chấm (.) giữa các nhóm số. Do . là ký tự đặc biệt trong regex, ta cần dùng \. để chỉ dấu chấm thật.
+        #\b → Đóng giới hạn từ để đảm bảo chỉ bắt địa chỉ IP hoàn chỉnh.
         ip_pattern = r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
 
         # Read the file content
