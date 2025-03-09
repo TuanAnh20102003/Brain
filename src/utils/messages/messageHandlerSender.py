@@ -32,7 +32,7 @@ class messageHandlerSender:
         queuesList (dictionary of multiprocessing.queues.Queue): Dictionary of queues where the ID is the type of messages.
         message (enum): A specific message
     """
-        
+    #Constructor call automotically when declared an object    
     def __init__(self, queuesList, message):
         self.queuesList = queuesList
         self.message = message
