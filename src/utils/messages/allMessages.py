@@ -33,8 +33,8 @@ from enum import Enum
 class mainCamera(Enum):
     Queue = "General"
     Owner = "threadCamera"
-    msgID = 1
-    msgType = "str"
+    msgID = 1 #id của tin nhắn
+    msgType = "str" #Dữ liệu gửi đi sẽ có dạng dict 
 
 class serialCamera(Enum):
     Queue = "General"
