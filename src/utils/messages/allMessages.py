@@ -26,6 +26,7 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 
+# allMessages.py: Định nghĩa các loại thông điệp trong hệ thống bằng Enum​
 from enum import Enum
 
 ####################################### processCamera #######################################
@@ -63,8 +64,8 @@ class LaneKeeping(Enum):
 class Cars(Enum):
     Queue = "General"
     Owner = "threadCarsAndSemaphores"
-    msgID = 1
-    msgType = "dict"
+    msgID = 1 #id của tin nhắn 
+    msgType = "dict" #Dữ liệu gửi đi sẽ có dạng dict (từ điển - dictionary trong Python) (file JSON).
 
 class Semaphores(Enum):
     Queue = "General"
